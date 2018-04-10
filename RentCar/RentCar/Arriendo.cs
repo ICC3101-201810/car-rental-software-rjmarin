@@ -8,17 +8,17 @@ namespace RentCar
 {
     class Arriendo
     {
-        List<Sucursal> su = new List<Sucursal>();
-        List<Vehiculo> ve = new List<Vehiculo>();
-       
+        Sucursal sucursal;
+        Vehiculo vehiculo;
         Cliente cliente;
 
-        public Arriendo(List<Sucursal> su, List<Vehiculo> ve,  Cliente cliente)
+        public Arriendo(Sucursal miSucursal, Vehiculo miVehiculo, Cliente Micliente)
         {
-            this.su = su;
-            this.ve = ve;
+            sucursal = miSucursal;
+            vehiculo = miVehiculo;
+            cliente = Micliente;
             
-            this.cliente = cliente;
+            
         }
     }
 }

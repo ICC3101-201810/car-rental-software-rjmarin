@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 
 namespace RentCar
 {
-    class Cliente
+     abstract class Cliente
     {
-        private string  nombre;
+        public string  nombre;
+        public int id;
 
-        public   Cliente(string nombre)
+        public Cliente(string miNombre, int miId)
         {
-            Nombre = nombre;
+            nombre = miNombre;
+            id = miId;
         }
-
-        public string Nombre { get => nombre; set => nombre = value; }
     }
 }

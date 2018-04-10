@@ -8,20 +8,18 @@ namespace RentCar
 {
     class Vehiculo
     {
-        private string nombre;
-        private int año;
+         string nombre;
+         int año;
+        string tipo;
 
 
-
-
-        public int Año { get => año; set => año = value; }
-        public string Nombre { get => nombre; set => nombre = value; }
-
-        public Vehiculo( int año, string nombre)
+        public Vehiculo( int miAño, string miNombre, string miTipo)
         {
             
-            Año = año;
-            Nombre = nombre;
+            año = miAño;
+            nombre = miNombre;
+            tipo = miTipo;
+
             
             
 

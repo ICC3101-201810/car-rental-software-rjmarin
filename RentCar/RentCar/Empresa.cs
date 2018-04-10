@@ -8,13 +8,11 @@ namespace RentCar
 {
     class Empresa: Cliente
     {
-         private bool permiso;
-
-        public bool Permiso { get => permiso; set => permiso = value; }
-
-        public Empresa(bool permiso, string nombre): base(nombre)
+         bool permiso;
+         
+        public Empresa(bool miPermiso, string miNombre, int miId): base(miNombre,miId)
         {
-            Permiso = permiso;
+            permiso = miPermiso;
             
         }
     }

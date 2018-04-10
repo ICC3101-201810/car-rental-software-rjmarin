@@ -8,54 +8,93 @@ namespace RentCar
 {
     class Program
     {
-        enum Tipo { auto, acuático, moto, camion, bus, maquinariapesada }
-        enum Accesorios { radios, GPS, ruedasextra, cortinas, sillas }
+     
         static void Main(string[] args)
         {
-            Vehiculo v1 = new Vehiculo(1979, "auto");
-            List<Sucursal> su1 = new List<Sucursal>();
-            Sucursal sucursal = new Sucursal("","");
-            Vehiculo vehiculo = new Vehiculo(70, "");
+            string nom,opcion,op;
+            string direc;
+            int rut,id;
 
-            string numero;
-            string Tupo;
-            Console.WriteLine("Nombre de la sucursal");
-            sucursal.nombre = Console.ReadLine();
-            Console.WriteLine("Nombre la direccion de la sucursal");
-            sucursal.direccion = Console.ReadLine();
-            Console.WriteLine("que tipo de auto desea arrendar (ingrese numero)");
-            foreach (string str in Enum.GetNames(typeof(Tipo)))
-                Console.WriteLine(str +", numero:"+ Enum.GetValues(typeof(Tipo)));
-            numero = Console.ReadLine();
+            List<Sucursal> sucursales = new List<Sucursal>();
+            List<Cliente> clientes = new List<Cliente>();
+            while (true)
+            {
+                if (sucursales.Count ==0) 
+                {
+                    List<Vehiculo> vehiculos1 = new List<Vehiculo>();
+                    Console.WriteLine("NO existe  sucursal, agregue 1 ");
+                    Console.WriteLine("Nombre sucursal:  ");
+                    nom= Console.ReadLine();
+                    Console.WriteLine("Nombre sucursal:  ");
+                    direc = Console.ReadLine();
+                    Console.WriteLine("Nombre sucursal:  ");
+                    rut = Int32.Parse(Console.ReadLine());
+                    Sucursal s = new Sucursal(nom, direc, rut,vehiculos1);
+                    sucursales.Add(s);
+                }
 
-            if (numero == "1")
-            {
-                Tupo = "auto";
+                Console.WriteLine("MENU \n (1) agregar sucursal\n (2) registrar cliente\n (3) arrendar vehiculo\n (4) salir ");
+                opcion = Console.ReadLine();
+                if (opcion=="1")
+                {
+                    List<Vehiculo> vehiculos = new List<Vehiculo>();
+                    Console.WriteLine("NO existe  sucursal, agregue 1 ");
+                    Console.WriteLine("Nombre sucursal:  ");
+                    nom = Console.ReadLine();
+                    Console.WriteLine("direccion sucursal:  ");
+                    direc = Console.ReadLine();
+                    Console.WriteLine("rut sucursal:  ");
+                    rut = Int32.Parse(Console.ReadLine());
+                    Sucursal s = new Sucursal(nom, direc, rut,vehiculos);
+                    sucursales.Add(s);
+                }
+                else if (opcion == "2")
+                {
+                    Console.WriteLine("PRESIONE\n (1) persona\n (2) Empresa ");
+                    op = Console.ReadLine();
+                    if (op=="1")
+                    {
+                        Console.WriteLine("Nombre persona:  ");
+                        nom = Console.ReadLine();
+                        Console.WriteLine("id de la persona:  ");
+                        id = Int32.Parse(Console.ReadLine());
+                        Persona p = new Persona(true,nom, id);
+                        clientes.Add(p);
+
+                    }
+                    else if (op == "2")
+                    {
+                        Console.WriteLine("Nombre de la empresa:  ");
+                        nom = Console.ReadLine();
+                        Console.WriteLine("id de la emperesa:  ");
+                        id = Int32.Parse(Console.ReadLine());
+                        Empresa p = new Empresa(true, nom, id);
+                        clientes.Add(p);
+
+                    }
+                }
+                else if (opcion == "3")
+                {
+                    if(clientes.Count== 0)
+                    {
+                        Console.WriteLine("no existe cliente");
+                        continue;
+                    }
+                    else
+                    {
+                            
+                    }
+                }
+                else if (opcion == "4")
+                {
+                    break;
+                }
+
             }
-            if (numero == "2")
-            {
-                Tupo = "acuatico";
-            }
-            if (numero == "3")
-            {
-                Tupo = "moto";
-            }
-            if (numero == "4")
-            {
-                Tupo = "camion";
-            }
-            if (numero == "5")
-            {
-                Tupo = "bus";
-            }
-            if (numero == "6")
-            {
-                Tupo = "maquinaria pesada";
-            }
-            Console.WriteLine("Nombre del"+Tupo);
-            vehiculo.Nombre = Console.ReadLine();
-            Console.WriteLine("año del vehiculo");
-            vehiculo.Año = Console.ReadLine();
+           
+
+
+
 
         }
     }

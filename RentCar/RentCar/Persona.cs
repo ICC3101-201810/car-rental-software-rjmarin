@@ -8,14 +8,15 @@ namespace RentCar
 {
     class Persona:Cliente
     {
-        private bool licencia;
+        public  bool licencia;
 
-        public bool Licencia { get => licencia; set => licencia = value; }
+        
 
-        public Persona(bool licencia, string nombre): base(nombre)
+        public Persona(bool miLicencia, string miNombre,int miId): base(miNombre,miId)
         {
-            Licencia = licencia;
-            Nombre = nombre;
+            licencia = miLicencia;
+            
         }
     }
+
 }
