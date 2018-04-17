@@ -8,16 +8,29 @@ namespace RentCar
 {
     class Program
     {
-     
+
         static void Main(string[] args)
         {
-            string nom,opcion,op;
+            string nom, opcion, op;
             string direc;
-            int rut,id;
-
+            int rut;
+            int id;
+            List<Arriendo> arriendos = new List<Arriendo>();
             List<Sucursal> sucursales = new List<Sucursal>();
             List<Cliente> clientes = new List<Cliente>();
-            while (true)
+            List<Accesorios> accesorios1 = new List<Accesorios>();
+            List<string> name_accesorios = new List<string> { "radios con bluetooth", "GPS, ruedas extra de repuesto", "cortinas para ventanas", "sillas para infantes" };
+            foreach (string name in name_accesorios)
+            {
+                Random rnd = new Random();
+                int value = rnd.Next(0, 20);
+                Accesorios acc = new Accesorios(name, value);
+                accesorios1.Add(acc);
+            }
+            
+
+
+            while(true)
             {
                 if (sucursales.Count ==0) 
                 {
@@ -25,15 +38,15 @@ namespace RentCar
                     Console.WriteLine("NO existe  sucursal, agregue 1 ");
                     Console.WriteLine("Nombre sucursal:  ");
                     nom= Console.ReadLine();
-                    Console.WriteLine("Nombre sucursal:  ");
+                    Console.WriteLine("direccion sucursal:  ");
                     direc = Console.ReadLine();
-                    Console.WriteLine("Nombre sucursal:  ");
+                    Console.WriteLine("rut sucursal:  ");
                     rut = Int32.Parse(Console.ReadLine());
-                    Sucursal s = new Sucursal(nom, direc, rut,vehiculos1);
+                    Sucursal s = new Sucursal(nom, direc, rut, vehiculos1);
                     sucursales.Add(s);
                 }
 
-                Console.WriteLine("MENU \n (1) agregar sucursal\n (2) registrar cliente\n (3) arrendar vehiculo\n (4) salir ");
+    Console.WriteLine("MENU \n (1) agregar sucursal\n (2) registrar cliente\n (3) arrendar vehiculo\n (4) salir ");
                 opcion = Console.ReadLine();
                 if (opcion=="1")
                 {
@@ -45,7 +58,7 @@ namespace RentCar
                     direc = Console.ReadLine();
                     Console.WriteLine("rut sucursal:  ");
                     rut = Int32.Parse(Console.ReadLine());
-                    Sucursal s = new Sucursal(nom, direc, rut,vehiculos);
+                    Sucursal s = new Sucursal(nom, direc, rut, vehiculos);
                     sucursales.Add(s);
                 }
                 else if (opcion == "2")
@@ -58,7 +71,7 @@ namespace RentCar
                         nom = Console.ReadLine();
                         Console.WriteLine("id de la persona:  ");
                         id = Int32.Parse(Console.ReadLine());
-                        Persona p = new Persona(true,nom, id);
+                        Persona p = new Persona(true, nom, id);
                         clientes.Add(p);
 
                     }
@@ -82,7 +95,47 @@ namespace RentCar
                     }
                     else
                     {
-                            
+                        
+                        Console.WriteLine("rut de persona o emepresa");
+                        rut = Int32.Parse(Console.ReadLine());
+                        
+                        foreach (Cliente c in clientes)
+                        {
+                            if (c.id==rut)
+                            {
+                                Console.WriteLine("ingrese direccion sucursal:");
+                                direc = Console.ReadLine();
+                                foreach (Sucursal s in sucursales)
+                                {
+                                    if (direc==s.direccion)
+                                    {
+                                        Console.WriteLine("ingrese vehiculo que quiera arrendar");
+                                        string v;
+                                        v = Console.ReadLine();
+                                        Console.WriteLine("ingrese su patente");
+                                        string patente;
+                                        patente = Console.ReadLine();
+                                        foreach (Vehiculo vehi in s.vehiculos)
+                                        {
+                                            if (vehi.patente==patente)
+                                            {
+                                                List<String> accesorios_comprados = new List<string>();
+                                                Arriendo.Arrendar(s, vehi, c, sucursales, clientes, s.vehiculos, accesorios1);
+                                                Arriendo arr = new Arriendo(s, vehi, c, accesorios_comprados);
+                                                arriendos.Add(arr);
+                                            }
+                                        }
+                                        
+
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                Console.WriteLine("rut no existente ");
+                                break;
+                            }
+                        }
                     }
                 }
                 else if (opcion == "4")
@@ -97,5 +150,7 @@ namespace RentCar
 
 
         }
-    }
+    }          
 }
+
+

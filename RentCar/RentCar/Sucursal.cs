@@ -11,7 +11,7 @@ namespace RentCar
         public string nombre;
         public string direccion;
         public int rut;
-        List<Vehiculo> vehiculos = new List<Vehiculo>();
+        public List<Vehiculo> vehiculos = new List<Vehiculo>();
 
         public Sucursal(string miNombre,string miDireccion, int miRut, List<Vehiculo> miVehiculos)
         {

@@ -8,17 +8,17 @@ namespace RentCar
 {
     class Vehiculo
     {
-         string nombre;
-         int año;
-        string tipo;
+         public string nombre;
+         public int año;
+         public string patente;
 
 
-        public Vehiculo( int miAño, string miNombre, string miTipo)
+        public Vehiculo( int miAño, string miNombre, string miPatente)
         {
             
             año = miAño;
             nombre = miNombre;
-            tipo = miTipo;
+            patente = miPatente;
 
             
             

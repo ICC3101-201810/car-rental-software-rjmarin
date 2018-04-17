@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RentCar
 {
-     abstract class Cliente
+      class Cliente
     {
         public string  nombre;
         public int id;
