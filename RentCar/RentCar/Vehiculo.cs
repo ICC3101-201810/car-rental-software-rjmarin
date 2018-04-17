@@ -11,11 +11,12 @@ namespace RentCar
          public string nombre;
          public int año;
          public string patente;
+        public string modelo;
 
 
-        public Vehiculo( int miAño, string miNombre, string miPatente)
+        public Vehiculo( int miAño, string miNombre, string miPatente, string miModelo)
         {
-            
+            modelo = miModelo;
             año = miAño;
             nombre = miNombre;
             patente = miPatente;
